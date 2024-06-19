@@ -2,13 +2,7 @@
 
 namespace ZoomEventsSample
 {
-    public class Model
-    {
-        public DateTime Year { get; set; }
-        public double StrokePrice { get; set; }
-    }
-
-    public class ViewModel: INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
         public List<Model> Data { get; set; }
 
