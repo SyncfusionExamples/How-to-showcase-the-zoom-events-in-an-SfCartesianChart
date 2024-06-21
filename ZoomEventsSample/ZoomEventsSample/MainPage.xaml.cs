@@ -8,7 +8,7 @@ namespace ZoomEventsSample
         {
             InitializeComponent();
 
-            //C# code
+            //Zoom Event Handling in C#
             //VerticalStackLayout views = new VerticalStackLayout();
             //var label1 = new Label
             //{
@@ -25,7 +25,7 @@ namespace ZoomEventsSample
 
             //var label4 = new Label();
             //label4.SetBinding(Label.TextProperty, new Binding("VisibleMaximum", stringFormat: "{0: MMM d}"));
-           
+
             //SfCartesianChart chart = new SfCartesianChart();
             //chart.ZoomEnd += Chart_ZoomEnd;
 
@@ -48,7 +48,7 @@ namespace ZoomEventsSample
             //chart.YAxes.Add(secondaryAxis);
 
             //chart.ZoomPanBehavior = new ChartZoomPanBehavior();
-           
+
             //AreaSeries areaSeries = new AreaSeries()
             //{
             //    ItemsSource = new ViewModel().Data,
