@@ -71,12 +71,8 @@ namespace ZoomEventsSample
         {
             if (e.Axis is DateTimeAxis dateTimeAxis)
             {
-                DateTime minimum = DateTime.FromOADate(dateTimeAxis.VisibleMinimum);
-                DateTime maximum = DateTime.FromOADate(dateTimeAxis.VisibleMaximum);
-               
-                viewModel.VisibleMinimum = minimum;
-                viewModel.VisibleMaximum = maximum;
-
+                viewModel.VisibleMinimum = DateTime.FromOADate(dateTimeAxis.VisibleMinimum);
+                viewModel.VisibleMaximum = DateTime.FromOADate(dateTimeAxis.VisibleMaximum);
             }
         }
     }
