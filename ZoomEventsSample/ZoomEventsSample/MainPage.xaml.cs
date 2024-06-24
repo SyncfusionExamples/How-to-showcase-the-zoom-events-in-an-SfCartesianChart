@@ -75,6 +75,21 @@ namespace ZoomEventsSample
                 viewModel.VisibleMaximum = DateTime.FromOADate(dateTimeAxis.VisibleMaximum);
             }
         }
+
+        private void SfCartesianChart_Scroll(object sender, ChartScrollEventArgs e)
+        {
+            if (e.Axis is DateTimeAxis dateTimeAxis)
+            {
+                viewModel.VisibleMinimum = DateTime.FromOADate(dateTimeAxis.VisibleMinimum);
+                viewModel.VisibleMaximum = DateTime.FromOADate(dateTimeAxis.VisibleMaximum);
+            }
+        }
+
+        private void SfCartesianChart_ResetZoom(object sender, ChartResetZoomEventArgs e)
+        {
+            viewModel.VisibleMinimum = new DateTime(2023, 1, 1);
+            viewModel.VisibleMaximum = new DateTime(2023, 12, 1);
+        }
     }
 
 }

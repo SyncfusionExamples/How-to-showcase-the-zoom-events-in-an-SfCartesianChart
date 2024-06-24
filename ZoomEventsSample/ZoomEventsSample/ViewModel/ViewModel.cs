@@ -52,6 +52,9 @@ namespace ZoomEventsSample
             new Model { Year = new DateTime(2023, 11, 1), StrokePrice = 100 },
             new Model { Year = new DateTime(2023, 12, 1), StrokePrice = 105 }
            };
+
+            visibleMinimum = Data[0].Year;
+            visibleMaximum = Data[Data.Count - 1].Year;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
