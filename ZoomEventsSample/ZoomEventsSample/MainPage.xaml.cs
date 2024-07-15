@@ -44,7 +44,7 @@ namespace ZoomEventsSample
             //NumericalAxis secondaryAxis = new NumericalAxis();
             //secondaryAxis.Title = new ChartAxisTitle
             //{
-            //    Text = "Stoke price [in dollar]",
+            //    Text = "Stock price [in dollar]",
             //};
             //chart.YAxes.Add(secondaryAxis);
 
@@ -57,7 +57,7 @@ namespace ZoomEventsSample
             //{
             //    ItemsSource = new ViewModel().Data,
             //    XBindingPath = "Year",
-            //    YBindingPath = "StrokePrice"
+            //    YBindingPath = "StockPrice"
             //};
             //chart.Series.Add(areaSeries);
 
@@ -87,12 +87,6 @@ namespace ZoomEventsSample
                 viewModel.VisibleMinimum = DateTime.FromOADate(dateTimeAxis.VisibleMinimum);
                 viewModel.VisibleMaximum = DateTime.FromOADate(dateTimeAxis.VisibleMaximum);
             }
-        }
-
-        private void SfCartesianChart_ResetZoom(object sender, ChartResetZoomEventArgs e)
-        {
-            viewModel.VisibleMinimum = new DateTime(2023, 1, 1);
-            viewModel.VisibleMaximum = new DateTime(2023, 12, 1);
         }
     }
 

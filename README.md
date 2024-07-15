@@ -1,7 +1,7 @@
 # How to retrieve axis range min/max values on Zoom in .NET MAUI SfCartesianChart
 [.NET MAUI SfCartesianChart](https://www.syncfusion.com/maui-controls/maui-cartesian-charts) provides [zoom and pan events](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#events) that enable customization of the zoom behavior in charts. This article highlights the key events and demonstrates how to dynamically retrieve the axis [VisibleMinimum](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_VisibleMinimum) and [VisibleMaximum](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_VisibleMaximum) values during these interactions.
 
-### Zoom and Pan Events:
+##### Zoom and Pan Events:
 * **[ZoomStart:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomStart)** Triggered when the user initiates a zoom action. Can be canceled to interrupt the action.
 * **[ZoomDelta:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomDelta)** Activated during the zooming process and can be canceled.
 * **[ZoomEnd:](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomEnd)** Triggered when the zooming action finishes.
@@ -14,9 +14,79 @@
 ### Initialize SfCartesianChart:
 Begin by setting up the **SfCartesianChart** according to the [guidelines in the documentation](https://help.syncfusion.com/maui/cartesian-charts/getting-started).
 
+### Initialize ZoomPanBehaviour:
+To enable the zooming and panning in the chart, create an instance of [ChartZoomPanBehavior](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartZoomPanBehavior.html) and set it to the [ZoomPanBehavior](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomPanBehavior) property of [SfCartesianChart.](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html)
+
+XAML
+ 
+ ```html
+<chart:SfCartesianChart>
+
+<chart:SfCartesianChart.XAxes>
+     <chart:DateTimeAxis>
+         <chart:DateTimeAxis.Title>
+             <chart:ChartAxisTitle Text="Year"/>
+         </chart:DateTimeAxis.Title>
+         <chart:DateTimeAxis.LabelStyle>
+             <chart:ChartAxisLabelStyle LabelFormat="MMM-dd"/>
+         </chart:DateTimeAxis.LabelStyle>
+     </chart:DateTimeAxis>
+ </chart:SfCartesianChart.XAxes>
+
+  <chart:SfCartesianChart.YAxes>
+      <chart:NumericalAxis>
+          <chart:NumericalAxis.Title>
+              <chart:ChartAxisTitle Text="Stock price"/>
+          </chart:NumericalAxis.Title>
+      </chart:NumericalAxis>
+  </chart:SfCartesianChart.YAxes>
+  
+<chart:SfCartesianChart.ZoomPanBehavior>
+    <chart:ChartZoomPanBehavior />
+</chart:SfCartesianChart.ZoomPanBehavior>
+
+ <chart:AreaSeries ItemsSource="{Binding StockData}"
+                   XBindingPath="Year" 
+                   YBindingPath="StockPrice"/>
+</chart:SfCartesianChart> 
+ ``` 
+ 
+C#
+ ```csharp
+SfCartesianChart chart = new SfCartesianChart();
+
+ DateTimeAxis primaryAxis = new DateTimeAxis();
+ primaryAxis.Title = new ChartAxisTitle
+ {
+     Text = "Year",
+ };
+ primaryAxis.LabelStyle = new ChartAxisLabelStyle
+ {
+     LabelFormat = "MMM-dd"
+ };
+ chart.XAxes.Add(primaryAxis);
+
+ NumericalAxis secondaryAxis = new NumericalAxis();
+ secondaryAxis.Title = new ChartAxisTitle
+ {
+     Text = "Stock price [in dollar]",
+ };
+ chart.YAxes.Add(secondaryAxis);
+
+ chart.ZoomPanBehavior = new ChartZoomPanBehavior(); 
+ 
+  AreaSeries areaSeries = new AreaSeries()
+  {
+       ItemsSource = new ViewModel().Data,
+       XBindingPath = Year,
+       YBindingPath = StockPrice,
+  };
+  chart.Series.Add(areaSeries);
+ ```
+
 ### Dynamically retrieve axis visible minimum and maximum :
 
-To dynamically retrieve the axis visible minimum and maximum values based on user interactions, initialize the [ZoomEnd](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomEnd) and [Scroll](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_Scroll)  events in the SfCartesianChart. The ZoomEnd event triggers when zooming concludes, and the Scroll event triggers when panning the chart. Inside these event handlers, you can access parameters such as [VisibleMinimum](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_VisibleMinimum) and [VisibleMaximum](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_VisibleMaximum)of the axis. Convert these double values to DateTime objects to enable direct manipulation and visualization of date and time values.
+To dynamically retrieve the axis visible minimum and maximum values based on user interactions, initialize the [ZoomEnd](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_ZoomEnd) and [Scroll](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.SfCartesianChart.html#Syncfusion_Maui_Charts_SfCartesianChart_Scroll)  events in the SfCartesianChart. The ZoomEnd event triggers when zooming concludes, and the Scroll event triggers when panning the chart. Inside these event handlers, you can access parameters such as [VisibleMinimum](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_VisibleMinimum) and [VisibleMaximum](https://help.syncfusion.com/cr/maui/Syncfusion.Maui.Charts.ChartAxis.html#Syncfusion_Maui_Charts_ChartAxis_VisibleMaximum) of the axis. Convert these double values to DateTime objects to enable direct manipulation and visualization of date and time values.
 
 XAML
  
@@ -26,34 +96,15 @@ XAML
  <Label Text="Axis visible maximum:" />
  <Label Text="{Binding VisibleMaximum, StringFormat='{0: MMM d}'}"/>
 
-<chart:SfCartesianChart ZoomEnd="Chart_ZoomEnd"       
-                        Scroll="Chart_Scroll">
+<chart:SfCartesianChart ZoomEnd="Chart_ZoomEnd" Scroll="Chart_Scroll">
 
-    <chart:SfCartesianChart.XAxes>
-    <chart:DateTimeAxis>
-        <chart:DateTimeAxis.Title>
-        <chart:ChartAxisTitle Text="Year"/>
-        </chart:DateTimeAxis.Title>
-        <chart:DateTimeAxis.LabelStyle>
-        <chart:ChartAxisLabelStyle LabelFormat="MMM-dd"/>
-        </chart:DateTimeAxis.LabelStyle>
-    </chart:DateTimeAxis>
-    </chart:SfCartesianChart.XAxes>
-
-  <chart:SfCartesianChart.YAxes>
-      <chart:NumericalAxis>
-          <chart:NumericalAxis.Title>
-              <chart:ChartAxisTitle Text="Stoke price"/>
-          </chart:NumericalAxis.Title>
-      </chart:NumericalAxis>
-  </chart:SfCartesianChart.YAxes>
-  
 <chart:SfCartesianChart.ZoomPanBehavior>
     <chart:ChartZoomPanBehavior EnableDoubleTap="False" />
 </chart:SfCartesianChart.ZoomPanBehavior>
 
 </chart:SfCartesianChart> 
  ```
+
  
  ```csharp
 private void Chart_ZoomEnd(object sender, ChartZoomEventArgs e)
@@ -99,24 +150,6 @@ C# :
  chart.ZoomEnd += Chart_ZoomEnd;
  chart.Scroll += Chart_Scroll;
 
- DateTimeAxis primaryAxis = new DateTimeAxis();
- primaryAxis.Title = new ChartAxisTitle
- {
-     Text = "Year",
- };
- primaryAxis.LabelStyle = new ChartAxisLabelStyle
- {
-     LabelFormat = "MMM-dd"
- };
- chart.XAxes.Add(primaryAxis);
-
- NumericalAxis secondaryAxis = new NumericalAxis();
- secondaryAxis.Title = new ChartAxisTitle
- {
-     Text = "Stoke price [in dollar]",
- };
- chart.YAxes.Add(secondaryAxis);
-
   chart.ZoomPanBehavior = new ChartZoomPanBehavior()
   {
       EnableDoubleTap = false,
@@ -130,4 +163,4 @@ C# :
 
  this.Content = views;
  ```
-  ![Zoom_events.gif](https://support.syncfusion.com/kb/agent/attachment/article/16330/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1NjY2Iiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.fBXVqP7m6fYG4kH2uTNU1NXUvjSbSLNkxowgghPrsYU)
+  ![ZoomEvents.gif](https://support.syncfusion.com/kb/agent/attachment/article/16330/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1NzA3Iiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.GbyFJQvSC2EvN0dHm7DdPzfG3RRcq_lSHvU--OxcIP0)

@@ -20,7 +20,7 @@
                     <Label Text="{Binding VisibleMaximum, StringFormat='{0: MMM d}'}"/>
             </HorizontalStackLayout>
         </Border>
-        <chart:SfCartesianChart Grid.Row="1" Grid.Column="0" ResetZoom="SfCartesianChart_ResetZoom"
+        <chart:SfCartesianChart Grid.Row="1" Grid.Column="0"
                                ZoomEnd="Chart_ZoomEnd" Scroll="Chart_Scroll">
 
             <chart:SfCartesianChart.XAxes>
@@ -40,7 +40,7 @@
             <chart:SfCartesianChart.YAxes>
                 <chart:NumericalAxis ShowMajorGridLines="False" Maximum="120">
                     <chart:NumericalAxis.Title>
-                            <chart:ChartAxisTitle Text="Stoke price [in dollar]"/>
+                            <chart:ChartAxisTitle Text="Stock price [in dollar]"/>
                     </chart:NumericalAxis.Title>
                 </chart:NumericalAxis>
             </chart:SfCartesianChart.YAxes>
@@ -51,7 +51,7 @@
 
             <chart:AreaSeries ItemsSource="{Binding Data}"
                               XBindingPath="Year" 
-                              YBindingPath="StrokePrice"
+                              YBindingPath="StockPrice"
                               Stroke="LightGray"
                               StrokeWidth="3">
                 <chart:AreaSeries.DataLabelSettings>
