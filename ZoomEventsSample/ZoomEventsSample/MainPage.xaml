@@ -21,7 +21,7 @@
             </HorizontalStackLayout>
         </Border>
         <chart:SfCartesianChart Grid.Row="1" Grid.Column="0" ResetZoom="SfCartesianChart_ResetZoom"
-                               ZoomEnd="Chart_ZoomEnd" Scroll="SfCartesianChart_Scroll">
+                               ZoomEnd="Chart_ZoomEnd" Scroll="Chart_Scroll">
 
             <chart:SfCartesianChart.XAxes>
                 <chart:DateTimeAxis x:Name="xAxis"
@@ -46,7 +46,7 @@
             </chart:SfCartesianChart.YAxes>
 
             <chart:SfCartesianChart.ZoomPanBehavior>
-                <chart:ChartZoomPanBehavior x:Name="zoom"/>
+                <chart:ChartZoomPanBehavior x:Name="zoom" EnableDoubleTap="False" />
             </chart:SfCartesianChart.ZoomPanBehavior>
 
             <chart:AreaSeries ItemsSource="{Binding Data}"

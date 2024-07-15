@@ -28,6 +28,7 @@ namespace ZoomEventsSample
 
             //SfCartesianChart chart = new SfCartesianChart();
             //chart.ZoomEnd += Chart_ZoomEnd;
+            //chart.Scroll += Chart_Scroll;
 
             //DateTimeAxis primaryAxis = new DateTimeAxis();
             //primaryAxis.Title = new ChartAxisTitle
@@ -47,7 +48,10 @@ namespace ZoomEventsSample
             //};
             //chart.YAxes.Add(secondaryAxis);
 
-            //chart.ZoomPanBehavior = new ChartZoomPanBehavior();
+            //chart.ZoomPanBehavior = new ChartZoomPanBehavior()
+            //{
+            //    EnableDoubleTap = false,
+            //};
 
             //AreaSeries areaSeries = new AreaSeries()
             //{
@@ -76,7 +80,7 @@ namespace ZoomEventsSample
             }
         }
 
-        private void SfCartesianChart_Scroll(object sender, ChartScrollEventArgs e)
+        private void Chart_Scroll(object sender, ChartScrollEventArgs e)
         {
             if (e.Axis is DateTimeAxis dateTimeAxis)
             {
