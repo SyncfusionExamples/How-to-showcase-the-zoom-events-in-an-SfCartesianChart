@@ -130,5 +130,4 @@ C# :
 
  this.Content = views;
  ```
- 
- ![Zoom_chart.gif](https://support.syncfusion.com/kb/agent/attachment/article/16330/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0MzExIiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.C6IxxwTgnrZOUKN0WdpfR7k6_QhDB83hQz3u81e8nww)
+  ![Zoom_events.gif](https://support.syncfusion.com/kb/agent/attachment/article/16330/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1NjY2Iiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.fBXVqP7m6fYG4kH2uTNU1NXUvjSbSLNkxowgghPrsYU)
