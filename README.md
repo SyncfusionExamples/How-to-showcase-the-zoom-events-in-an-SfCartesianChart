@@ -163,4 +163,4 @@ C# :
 
  this.Content = views;
  ```
-  ![ZoomEvents.gif](https://support.syncfusion.com/kb/agent/attachment/article/16330/inline?token=eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI1NzA3Iiwib3JnaWQiOiIzIiwiaXNzIjoic3VwcG9ydC5zeW5jZnVzaW9uLmNvbSJ9.GbyFJQvSC2EvN0dHm7DdPzfG3RRcq_lSHvU--OxcIP0)
+![ZoomEvents](https://github.com/user-attachments/assets/9c5b5f5c-aab0-4bbb-8f01-705b08cf14b1)
